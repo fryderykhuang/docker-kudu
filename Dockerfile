@@ -11,6 +11,7 @@ RUN yum clean all
 
 ADD etc/supervisord.conf /etc/
 ADD etc/kudu/conf/tserver.gflagfile /etc/kudu/conf/
+RUN truncate -s 0 /etc/default/kudu-tserver
 
 WORKDIR /
 
@@ -20,7 +21,7 @@ ADD bin/supervisord-bootstrap.sh /
 ADD bin/wait-for-it.sh /
 RUN chmod +x ./*.sh
 
-EXPOSE 8050 7050 8051 7051
+EXPOSE 8050 7050 8051 7051 8052 7052 8053 7053
 
 #RUN chkconfig ntpd on
 
